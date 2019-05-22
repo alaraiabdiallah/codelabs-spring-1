@@ -41,6 +41,8 @@ public class ProductController {
 
     @GetMapping
     public ResponseEntity<List<Product>> all(@RequestParam(required=false) String q){
+        logger.info(q);
+        getAllProductsRequest.setName(q);
         return httpInvoke.invoke(getAllProductsRequest);
     }
 

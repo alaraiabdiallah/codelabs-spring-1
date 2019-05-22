@@ -24,6 +24,10 @@ public class ProductReceiver {
         return prodRepo.findAll();
     }
 
+    public List<Product> searchByName(String keyword) {
+        return prodRepo.searchProductByName(keyword);
+    }
+
     public Optional<Product> find(Long id){
         return prodRepo.findById(id);
     }

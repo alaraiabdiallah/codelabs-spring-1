@@ -4,8 +4,8 @@ import id.gits.springcodelabs1.BaseCommand;
 import id.gits.springcodelabs1.ProductModule.Models.Product;
 import id.gits.springcodelabs1.ProductModule.Receivers.ProductReceiver;
 import id.gits.springcodelabs1.ProductModule.Repositories.ProductRepository;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,8 +19,20 @@ public class GetAllProductsRequest implements BaseCommand {
     @Autowired
     private ProductReceiver productReceiver;
 
+    private String name;
+
     @Override
     public List<Product> execute() {
-        return productReceiver.getAll();
+        if (name == null)
+            return productReceiver.getAll();
+        return productReceiver.searchByName(name);
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
     }
 }
