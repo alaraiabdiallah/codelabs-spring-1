@@ -4,21 +4,25 @@ import id.gits.springcodelabs1.BaseCommand;
 import id.gits.springcodelabs1.ProductModule.Models.Product;
 import id.gits.springcodelabs1.ProductModule.Receivers.ProductReceiver;
 import id.gits.springcodelabs1.ProductModule.Repositories.ProductRepository;
+import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class FindProductRequest implements BaseCommand {
 
-    private ProductReceiver receiver;
+    @Autowired
+    private ProductRepository productRepository;
 
+    @Autowired
+    private ProductReceiver productReceiver;
+
+    @Setter
     private Long id;
-
-    public FindProductRequest(ProductRepository repo, Long id){
-        this.id = id;
-        receiver = new ProductReceiver(repo);
-    }
 
     @Override
     public Product execute() {
-        return receiver.find(this.id)
+        return productReceiver.find(this.id)
                 .orElseThrow(() -> new RuntimeException("Data Not Found"));
     }
 }

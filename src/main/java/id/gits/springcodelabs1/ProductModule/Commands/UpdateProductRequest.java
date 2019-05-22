@@ -4,21 +4,27 @@ import id.gits.springcodelabs1.BaseCommand;
 import id.gits.springcodelabs1.ProductModule.Models.Product;
 import id.gits.springcodelabs1.ProductModule.Receivers.ProductReceiver;
 import id.gits.springcodelabs1.ProductModule.Repositories.ProductRepository;
+import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UpdateProductRequest implements BaseCommand {
-    private ProductReceiver receiver;
 
+    @Autowired
+    private ProductRepository productRepository;
+
+    @Autowired
+    private ProductReceiver productReceiver;
+
+    @Setter
     private Long id;
-    private Product data;
 
-    public UpdateProductRequest(ProductRepository repo, Long id, Product newData){
-        this.id = id;
-        this.data = newData;
-        receiver = new ProductReceiver(repo);
-    }
+    @Setter
+    private Product newData;
 
     @Override
     public Product execute() {
-        return receiver.delete(id);
+        return productReceiver.update(id,newData);
     }
 }

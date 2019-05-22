@@ -4,18 +4,20 @@ import id.gits.springcodelabs1.BaseCommand;
 import id.gits.springcodelabs1.ProductModule.Models.Product;
 import id.gits.springcodelabs1.ProductModule.Receivers.ProductReceiver;
 import id.gits.springcodelabs1.ProductModule.Repositories.ProductRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Component
+@Service
 public class GetAllProductsRequest implements BaseCommand {
 
-    private ProductReceiver productReceiver;
+    @Autowired
+    private ProductRepository productRepository;
 
-    public GetAllProductsRequest(ProductRepository repo){
-        productReceiver = new ProductReceiver(repo);
-    }
+    @Autowired
+    private ProductReceiver productReceiver;
 
     @Override
     public List<Product> execute() {

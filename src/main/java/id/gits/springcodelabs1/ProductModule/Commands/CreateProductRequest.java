@@ -4,22 +4,24 @@ import id.gits.springcodelabs1.BaseCommand;
 import id.gits.springcodelabs1.ProductModule.Models.Product;
 import id.gits.springcodelabs1.ProductModule.Receivers.ProductReceiver;
 import id.gits.springcodelabs1.ProductModule.Repositories.ProductRepository;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CreateProductRequest implements BaseCommand {
 
     @Autowired
-    private ProductReceiver receiver;
+    private ProductRepository productRepository;
 
-    private Product data;
+    @Autowired
+    private ProductReceiver productReceiver;
 
-    public CreateProductRequest(ProductRepository repo, Product data){
-        this.data = data;
-        receiver = new ProductReceiver(repo);
-    }
+    @Setter
+    private Product newData;
 
     @Override
     public Product execute() {
-        return receiver.save(data);
+        return productReceiver.save(newData);
     }
 }

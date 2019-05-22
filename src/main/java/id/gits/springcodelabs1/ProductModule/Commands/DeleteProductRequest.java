@@ -5,19 +5,24 @@ import id.gits.springcodelabs1.BaseCommand;
 import id.gits.springcodelabs1.ProductModule.Models.Product;
 import id.gits.springcodelabs1.ProductModule.Receivers.ProductReceiver;
 import id.gits.springcodelabs1.ProductModule.Repositories.ProductRepository;
+import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class DeleteProductRequest implements BaseCommand {
-    private ProductReceiver receiver;
 
+    @Autowired
+    private ProductRepository productRepository;
+
+    @Autowired
+    private ProductReceiver productReceiver;
+
+    @Setter
     private Long id;
-
-    public DeleteProductRequest(ProductRepository repo, Long id){
-        this.id = id;
-        receiver = new ProductReceiver(repo);
-    }
 
     @Override
     public Product execute() {
-        return receiver.delete(id);
+        return productReceiver.delete(id);
     }
 }
