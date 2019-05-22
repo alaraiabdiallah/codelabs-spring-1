@@ -1,5 +1,5 @@
 package id.gits.springcodelabs1;
 public interface BaseCommand<T> {
 
-    T execute();
+    T execute() throws Exception;
 }

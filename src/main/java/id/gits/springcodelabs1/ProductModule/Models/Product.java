@@ -16,7 +16,6 @@ import javax.validation.constraints.NotNull;
 @Data
 @Getter
 @Setter
-@AllArgsConstructor
 public class Product {
 
     @Id

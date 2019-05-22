@@ -8,6 +8,8 @@ import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
+
 @Service
 public class FindProductRequest implements BaseCommand {
 
@@ -22,7 +24,6 @@ public class FindProductRequest implements BaseCommand {
 
     @Override
     public Product execute() {
-        return productReceiver.find(this.id)
-                .orElseThrow(() -> new RuntimeException("Data Not Found"));
+        return productReceiver.find(this.id);
     }
 }

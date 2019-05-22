@@ -22,7 +22,7 @@ public class DeleteProductRequest implements BaseCommand {
     private Long id;
 
     @Override
-    public Product execute() {
+    public Product execute() throws Exception {
         return productReceiver.delete(id);
     }
 }

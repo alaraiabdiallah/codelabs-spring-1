@@ -24,7 +24,7 @@ public class UpdateProductRequest implements BaseCommand {
     private Product newData;
 
     @Override
-    public Product execute() {
+    public Product execute() throws Exception {
         return productReceiver.update(id,newData);
     }
 }
