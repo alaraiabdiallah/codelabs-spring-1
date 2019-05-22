@@ -19,9 +19,6 @@ public class ProductController {
     Logger logger = LoggerFactory.getLogger(ProductController.class);
 
     @Autowired
-    private ProductRepository prodRepo;
-
-    @Autowired
     private GetAllProductsRequest getAllProductsRequest;
 
     @Autowired

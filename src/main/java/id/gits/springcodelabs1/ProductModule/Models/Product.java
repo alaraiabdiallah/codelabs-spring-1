@@ -1,5 +1,6 @@
 package id.gits.springcodelabs1.ProductModule.Models;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,6 +16,7 @@ import javax.validation.constraints.NotNull;
 @Data
 @Getter
 @Setter
+@AllArgsConstructor
 public class Product {
 
     @Id
